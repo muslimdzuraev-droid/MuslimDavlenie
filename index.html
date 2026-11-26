@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Физика — Давление | Джураев Муслим Тариэльевич</title>
+
+<style>
+:root {
+    --blue: #2878a8;
+    --dark: #183d56;
+    --cyan: #62c5d5;
+    --light: #eaf7fb;
+    --white: #ffffff;
+    --text: #29465a;
+    --green: #58a88b;
+    --orange: #f0a65a;
+    --shadow: 0 8px 28px rgba(31, 91, 120, .10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background: #f3f9fc;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+header {
+    position: relative;
+    overflow: hidden;
+    padding: 55px 20px 65px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(130deg, #174b70, #2888aa, #69c5ce);
+}
+
+header h1 {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-size: clamp(27px, 5vw, 43px);
+}
+
+header p {
+    position: relative;
+    z-index: 2;
+    margin: 12px 0 0;
+    font-size: 18px;
+}
+
+.header-label {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    margin-top: 22px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 30px;
+    background: rgba(255,255,255,.14);
+}
+
+.bubble {
+    position: absolute;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    animation: float 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.bubble:nth-child(1) {
+    width: 90px;
+    height: 90px;
+    left: 8%;
+    top: 20px;
+}
+
+.bubble:nth-child(2) {
+    width: 55px;
+    height: 55px;
+    right: 15%;
+    top: 60px;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+    width: 125px;
+    height: 125px;
+    right: 5%;
+    bottom: -65px;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+    width: 45px;
+    height: 45px;
+    left: 25%;
+    bottom: 10px;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-17px); }
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 4px 15px rgba(0,0,0,.07);
+}
+
+nav a {
+    padding: 8px 13px;
+    border-radius: 20px;
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: white;
+    background: var(--blue);
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 35px auto;
+}
+
+.card {
+    margin-bottom: 27px;
+    padding: 28px;
+    border: 1px solid #e1edf2;
+    border-radius: 20px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--dark);
+    font-size: 27px;
+}
+
+h3 {
+    color: #24799e;
+    margin-top: 25px;
+}
+
+p {
+    margin: 12px 0;
+}
+
+.definition {
+    padding: 18px 20px;
+    border-left: 5px solid var(--cyan);
+    border-radius: 10px;
+    background: #edf9fc;
+    font-size: 17px;
+}
+
+.formula {
+    margin: 18px 0;
+    padding: 22px;
+    border: 1px solid #d3edf5;
+    border-radius: 15px;
+    background: #eaf8fc;
+    color: #155d80;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.formula small {
+    display: block;
+    margin-top: 8px;
+    color: #52758a;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.example {
+    margin: 17px 0;
+    padding: 18px;
+    border-radius: 12px;
+    background: #f2f8f4;
+    border-left: 5px solid var(--green);
+}
+
+.note {
+    padding: 17px;
+    border-radius: 12px;
+    background: #fff7eb;
+    border-left: 5px solid var(--orange);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.mini-card {
+    padding: 20px;
+    border: 1px solid #e0edf1;
+    border-radius: 16px;
+    background: #f9fcfd;
+}
+
+.illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    margin: 15px 0;
+    border-radius: 14px;
+    background: #edf8fc;
+}
+
+.illustration svg {
+    width: 100%;
+    max-width: 260px;
+    height: 145px;
+}
+
+.model {
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid #dcecf2;
+    border-radius: 17px;
+    background: #f7fbfd;
+}
+
+.model h3 {
+    margin-top: 0;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--blue);
+    cursor: pointer;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbdfe8;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: var(--blue);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: #185c80;
+    transform: translateY(-1px);
+}
+
+.result {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    color: #155d80;
+    background: #e1f4fa;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.visual-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 170px;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 13px;
+    background: #e7f4fa;
+}
+
+.block-visual {
+    width: 100px;
+    height: 65px;
+    background: linear-gradient(135deg, #4b9fc2, #23678d);
+    border-radius: 7px;
+    box-shadow: 0 7px 12px rgba(0,0,0,.15);
+    transition: width .2s, height .2s;
+}
+
+.water-tank {
+    position: relative;
+    width: 130px;
+    height: 145px;
+    border: 4px solid #4b9cbb;
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    background: #dff5fa;
+}
+
+.water-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: rgba(47,157,207,.55);
+    transition: height .2s;
+}
+
+.water-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-top: 2px dashed #176f9b;
+}
+
+.gas-box {
+    position: relative;
+    width: 220px;
+    height: 145px;
+    border: 3px solid #4d9fba;
+    border-radius: 14px;
+    background: #e9f8fb;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #298ab1;
+    animation: particleMove 2s linear infinite alternate;
+}
+
+@keyframes particleMove {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(22px, 13px); }
+    50% { transform: translate(-12px, 35px); }
+    75% { transform: translate(30px, -15px); }
+    100% { transform: translate(-20px, 20px); }
+}
+
+.task {
+    margin: 17px 0;
+    padding: 18px;
+    border: 1px solid #e0ebef;
+    border-radius: 13px;
+    background: #fbfdfe;
+}
+
+.answer {
+    display: none;
+    margin-top: 12px;
+    padding: 13px;
+    border-radius: 10px;
+    background: #eaf7ee;
+    color: #276c49;
+}
+
+.quiz-question {
+    margin: 18px 0;
+    padding: 17px;
+    border: 1px solid #e0edf2;
+    border-radius: 13px;
+    background: #fbfdfe;
+}
+
+.quiz-question label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.quiz-question input {
+    margin-right: 8px;
+    accent-color: var(--blue);
+}
+
+#quizResult {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 13px;
+    background: #eaf7fc;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 30px 15px;
+    color: white;
+    text-align: center;
+    background: #174b70;
+}
+
+@media(max-width:600px) {
+    .card {
+        padding: 19px;
+    }
+
+    nav {
+        gap: 3px;
+    }
+
+    nav a {
+        padding: 7px 9px;
+        font-size: 12px;
+    }
+
+    .formula {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <h1>Давление</h1>
+    <p>Физика • 7 класс</p>
+    <div class="header-label">Джураев Муслим Тариэльевич, преподаватель</div>
+</header>
+
+<nav>
+    <a href="#start">Начало</a>
+    <a href="#solid">Твёрдые тела</a>
+    <a href="#liquid">Жидкости</a>
+    <a href="#gas">Газы</a>
+    <a href="#models">Модели</a>
+    <a href="#practice">Практика</a>
+    <a href="#quiz">Тест</a>
+</nav>
+
+<main class="container">
+
+<section class="card" id="start">
+    <h2>1. Что такое давление?</h2>
+
+    <div class="definition">
+        <b>Давление</b> — это физическая величина, которая показывает, какая сила действует на единицу площади поверхности.
+    </div>
+
+    <p>Мы постоянно сталкиваемся с давлением в повседневной жизни. Например, когда человек идёт по снегу, его ноги давят на поверхность. Острый нож легче разрезает продукты, чем тупой. Это тоже связано с давлением.</p>
+
+    <div class="grid">
+        <div class="mini-card">
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <path d="M20 110 Q65 95 110 110 T230 110" fill="none" stroke="#8bc9e2" stroke-width="5"/>
+                    <path d="M65 50 L95 50 L95 95 L65 95 Z" fill="#398db5"/>
+                    <path d="M80 95 L80 120" stroke="#24698e" stroke-width="4"/>
+                    <path d="M72 112 L80 125 L88 112" fill="none" stroke="#24698e" stroke-width="3"/>
+                    <text x="125" y="65" font-size="13" fill="#315a70">Сила давит</text>
+                    <text x="125" y="83" font-size="13" fill="#315a70">на поверхность</text>
+                </svg>
+            </div>
+            <b>Действие силы</b>
+            <p>Предмет оказывает давление на поверхность, когда действует на неё силой.</p>
+        </div>
+
+        <div class="mini-card">
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <path d="M30 105 L220 105" stroke="#8bc9e2" stroke-width="5"/>
+                    <path d="M70 45 L100 45 L100 100 L70 100 Z" fill="#4b9fc2"/>
+                    <path d="M155 45 L175 45 L165 100 Z" fill="#e5a24e"/>
+                    <path d="M80 105 L80 125 M165 105 L165 125" stroke="#24698e" stroke-width="3"/>
+                    <text x="45" y="30" font-size="12" fill="#315a70">Большая площадь</text>
+                    <text x="145" y="30" font-size="12" fill="#315a70">Малая площадь</text>
+                </svg>
+            </div>
+            <b>Площадь поверхности</b>
+            <p>Чем меньше площадь при одинаковой силе, тем больше давление.</p>
+        </div>
+    </div>
+
+    <h3>От чего зависит давление?</h3>
+    <p>Давление зависит от двух величин:</p>
+    <ul>
+        <li><b>Сила давления (F)</b> — чем больше сила, тем больше давление.</li>
+        <li><b>Площадь поверхности (S)</b> — чем больше площадь, тем меньше давление при одинаковой силе.</li>
+    </ul>
+
+    <h3>Формула давления</h3>
+
+    <div class="formula">
+        p = F / S
+        <small>Давление равно силе, делённой на площадь поверхности.</small>
+    </div>
+
+    <p>Где:</p>
+    <ul>
+        <li>p — давление;</li>
+        <li>F — сила давления, измеряется в ньютонах (Н);</li>
+        <li>S — площадь поверхности, измеряется в квадратных метрах (м²).</li>
+    </ul>
+
+    <h3>Единица измерения давления</h3>
+    <div class="definition">
+        Основная единица давления в Международной системе единиц — <b>паскаль (Па)</b>.
+        <br>1 Па = 1 Н / 1 м².
+    </div>
+
+    <p>Также используются:</p>
+    <ul>
+        <li>1 кПа = 1000 Па;</li>
+        <li>1 МПа = 1 000 000 Па.</li>
+    </ul>
+
+    <h3>Как преобразовать формулу?</h3>
+    <div class="grid">
+        <div class="mini-card">
+            <div class="formula">F = p × S</div>
+            <p>Чтобы найти силу, давление умножаем на площадь.</p>
+        </div>
+        <div class="mini-card">
+            <div class="formula">S = F / p</div>
+            <p>Чтобы найти площадь, силу делим на давление.</p>
+        </div>
+    </div>
+
+    <h3>Пример решения задачи</h3>
+    <div class="example">
+        <b>Задача:</b> На поверхность площадью 2 м² действует сила 100 Н. Найдите давление.
+
+        <p><b>Дано:</b><br>F = 100 Н<br>S = 2 м²</p>
+
+        <p><b>Решение:</b><br>p = F / S<br>p = 100 / 2 = 50 Па.</p>
+
+        <b>Ответ: 50 Па.</b>
+    </div>
+</section>
+
+<section class="card" id="solid">
+    <h2>2. Давление твёрдых тел</h2>
+
+    <p>Твёрдые тела передают давление в направлении действия силы. Давление зависит от того, насколько большая сила действует на поверхность и насколько мала площадь соприкосновения.</p>
+
+    <div class="grid">
+        <div class="mini-card">
+            <h3>Лыжи</h3>
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <path d="M20 110 L225 110" stroke="#9acde0" stroke-width="8"/>
+                    <path d="M45 75 L210 75" stroke="#347eaa" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M45 91 L210 91" stroke="#65b5d0" stroke-width="9" stroke-linecap="round"/>
+                    <path d="M100 35 L100 65 M90 55 L100 68 L110 55" fill="none" stroke="#315a70" stroke-width="3"/>
+                </svg>
+            </div>
+            <p>Лыжи увеличивают площадь опоры. Поэтому человек меньше проваливается в снег.</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Острый нож</h3>
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <path d="M65 30 L180 85 L90 95 Z" fill="#aab9c3" stroke="#607d8b" stroke-width="2"/>
+                    <path d="M180 85 L220 105 L205 120 L170 95 Z" fill="#b77946"/>
+                    <path d="M90 105 L90 125" stroke="#db9a54" stroke-width="4"/>
+                    <path d="M82 115 L90 128 L98 115" fill="none" stroke="#db9a54" stroke-width="3"/>
+                </svg>
+            </div>
+            <p>Острое лезвие имеет маленькую площадь соприкосновения, поэтому создаёт большое давление.</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <b>Запомни:</b> увеличение площади опоры уменьшает давление, а уменьшение площади опоры увеличивает давление.
+    </div>
+
+    <h3>Пример задачи</h3>
+    <div class="example">
+        Человек массой 60 кг стоит на полу. Площадь двух подошв составляет 0,03 м². Найдите давление.
+
+        <p>Сначала найдём силу тяжести:</p>
+        <p>F = m × g = 60 × 10 = 600 Н.</p>
+
+        <p>Теперь найдём давление:</p>
+        <p>p = F / S = 600 / 0,03 = 20 000 Па.</p>
+
+        <b>Ответ: 20 000 Па.</b>
+    </div>
+</section>
+
+<section class="card" id="liquid">
+    <h2>3. Давление жидкостей</h2>
+
+    <div class="definition">
+        Жидкости оказывают давление на дно и стенки сосуда, а также на погружённые в них тела.
+    </div>
+
+    <p>Если опустить руку в воду, можно почувствовать, что вода давит на неё. Чем глубже мы погружаемся, тем больше становится давление.</p>
+
+    <h3>От чего зависит давление жидкости?</h3>
+    <ul>
+        <li>От плотности жидкости (ρ).</li>
+        <li>От глубины погружения (h).</li>
+        <li>От ускорения свободного падения (g).</li>
+    </ul>
+
+    <div class="formula">
+        p = ρ × g × h
+        <small>Давление жидкости на глубине.</small>
+    </div>
+
+    <p>Где:</p>
+    <ul>
+        <li>ρ — плотность жидкости (кг/м³);</li>
+        <li>g — ускорение свободного падения (примерно 10 Н/кг);</li>
+        <li>h — глубина (м).</li>
+    </ul>
+
+    <h3>Пример задачи</h3>
+    <div class="example">
+        <b>Задача:</b> Найдите давление воды на глубине 3 м. Плотность воды равна 1000 кг/м³.
+
+        <p><b>Дано:</b><br>ρ = 1000 кг/м³<br>g = 10 Н/кг<br>h = 3 м</p>
+
+        <p><b>Решение:</b><br>p = ρ × g × h<br>p = 1000 × 10 × 3 = 30 000 Па.</p>
+
+        <b>Ответ: 30 000 Па.</b>
+    </div>
+
+    <div class="note">
+        <b>Важно!</b> На одной и той же глубине давление покоящейся жидкости одинаково во всех направлениях. Давление увеличивается с глубиной.
+    </div>
+
+    <h3>Закон Паскаля</h3>
+    <div class="definition">
+        Давление, производимое на жидкость или газ, передаётся без изменения по всем направлениям.
+    </div>
+
+    <p>Этот закон объясняет работу гидравлических устройств, например автомобильного подъёмника и гидравлического пресса.</p>
+</section>
+
+<section class="card" id="gas">
+    <h2>4. Давление газов</h2>
+
+    <p>Газы состоят из множества маленьких частиц — молекул. Они постоянно и хаотично движутся и сталкиваются со стенками сосуда.</p>
+
+    <p>При столкновениях молекулы оказывают давление на стенки сосуда.</p>
+
+    <div class="grid">
+        <div class="mini-card">
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <rect x="35" y="15" width="180" height="115" rx="12" fill="#e7f5fb" stroke="#4a9bbb" stroke-width="4"/>
+                    <g fill="#2387b3">
+                        <circle cx="65" cy="45" r="6"/><circle cx="105" cy="75" r="6"/>
+                        <circle cx="160" cy="40" r="6"/><circle cx="190" cy="95" r="6"/>
+                        <circle cx="80" cy="105" r="6"/><circle cx="145" cy="100" r="6"/>
+                    </g>
+                    <g stroke="#2387b3" stroke-width="2">
+                        <path d="M65 45 L85 28 M105 75 L130 60 M160 40 L180 25"/>
+                    </g>
+                </svg>
+            </div>
+            <b>Молекулы газа</b>
+            <p>Частицы движутся во всех направлениях.</p>
+        </div>
+
+        <div class="mini-card">
+            <div class="illustration">
+                <svg viewBox="0 0 250 145">
+                    <circle cx="125" cy="75" r="53" fill="#dff3fb" stroke="#4a9bbb" stroke-width="4"/>
+                    <path d="M125 20 L125 3 M117 12 L125 3 L133 12" fill="none" stroke="#2387b3" stroke-width="3"/>
+                    <path d="M180 75 L205 75 M197 67 L205 75 L197 83" fill="none" stroke="#2387b3" stroke-width="3"/>
+                    <path d="M125 130 L125 145 M117 138 L125 145 L133 138" fill="none" stroke="#2387b3" stroke-width="3"/>
+                </svg>
+            </div>
+            <b>Давление газа</b>
+            <p>Молекулы ударяются о стенки сосуда.</p>
+        </div>
+    </div>
+
+    <h3>От чего зависит давление газа?</h3>
+    <ul>
+        <li>От температуры газа.</li>
+        <li>От объёма сосуда.</li>
+        <li>От количества молекул газа.</li>
+    </ul>
+
+    <p>Если газ нагреть в закрытом сосуде постоянного объёма, давление обычно увеличивается. Если уменьшить объём газа при неизменной температуре, давление также увеличится.</p>
+</section>
+
+<section class="card">
+    <h2>5. Атмосферное давление</h2>
+
+    <div class="definition">
+        <b>Атмосферное давление</b> — это давление, которое оказывает воздух атмосферы на поверхность Земли и находящиеся на ней тела.
+    </div>
+
+    <p>Воздух имеет массу, поэтому он оказывает давление. Хотя мы не замечаем этого постоянно, атмосферное давление действует на нас и на все окружающие предметы.</p>
+
+    <p>Нормальное атмосферное давление приблизительно равно:</p>
+
+    <div class="formula">
+        101 325 Па
+        <small>Примерно 101,3 кПа.</small>
+    </div>
+
+    <p>Для измерения атмосферного давления используют прибор, который называется <b>барометр</b>.</p>
+</section>
+
+<section class="card" id="models">
+    <h2>6. Интерактивные модели</h2>
+    <p>Изменяй параметры с помощью ползунков и наблюдай, как меняется давление.</p>
+
+    <div class="model">
+        <h3>Модель №1. Давление твёрдого тела</h3>
+
+        <label>Сила давления: <b id="forceValue">100</b> Н</label>
+        <input type="range" id="force" min="10" max="500" value="100" step="10">
+
+        <label>Площадь поверхности: <b id="areaValue">2</b> м²</label>
+        <input type="range" id="area" min="1" max="10" value="2" step="0.5">
+
+        <div class="visual-box">
+            <div class="block-visual" id="blockVisual"></div>
+        </div>
+
+        <div class="result" id="solidResult">Давление: 50 Па</div>
+        <p id="solidExplanation">Увеличивай силу или изменяй площадь и наблюдай за результатом.</p>
+    </div>
+
+    <div class="model">
+        <h3>Модель №2. Давление жидкости</h3>
+
+        <label>Глубина: <b id="depthValue">2</b> м</label>
+        <input type="range" id="depth" min="1" max="10" value="2">
+
+        <label>Плотность жидкости: <b id="densityValue">1000</b> кг/м³</label>
+        <input type="range" id="density" min="500" max="1500" value="1000" step="100">
+
+        <div class="visual-box">
+            <div class="water-tank">
+                <div class="water-fill" id="waterFill"></div>
+                <div class="water-line" id="waterLine" style="top:45%"></div>
+            </div>
+        </div>
+
+        <div class="result" id="liquidResult">Давление: 20 000 Па</div>
+        <p>Формула: p = ρ × g × h, где g = 10 Н/кг.</p>
+    </div>
+
+    <div class="model">
+        <h3>Модель №3. Давление газа</h3>
+
+        <label>Количество частиц: <b id="particleValue">10</b></label>
+        <input type="range" id="particleCount" min="2" max="35" value="10">
+
+        <div class="visual-box">
+            <div class="gas-box" id="gasBox"></div>
+        </div>
+
+        <div class="result" id="gasResult">Частиц: 10</div>
+        <p>Это наглядная модель: при одинаковых температуре и объёме увеличение количества частиц приводит к увеличению давления газа.</p>
+    </div>
+</section>
+
+<section class="card" id="practice">
+    <h2>7. Практические задания</h2>
+
+    <div class="task">
+        <b>Задача №1.</b>
+        На поверхность площадью 4 м² действует сила 200 Н. Найдите давление.
+        <br><br>
+        <button onclick="toggleAnswer('a1')">Показать решение</button>
+        <div class="answer" id="a1">
+            p = F / S = 200 / 4 = 50 Па.
+            <br><b>Ответ: 50 Па.</b>
+        </div>
+    </div>
+
+    <div class="task">
+        <b>Задача №2.</b>
+        Давление равно 300 Па, площадь поверхности 3 м². Найдите силу.
+        <br><br>
+        <button onclick="toggleAnswer('a2')">Показать решение</button>
+        <div class="answer" id="a2">
+            F = p × S = 300 × 3 = 900 Н.
+            <br><b>Ответ: 900 Н.</b>
+        </div>
+    </div>
+
+    <div class="task">
+        <b>Задача №3.</b>
+        Найдите давление воды на глубине 5 м. Плотность воды 1000 кг/м³.
+        <br><br>
+        <button onclick="toggleAnswer('a3')">Показать решение</button>
+        <div class="answer" id="a3">
+            p = ρ × g × h = 1000 × 10 × 5 = 50 000 Па.
+            <br><b>Ответ: 50 000 Па.</b>
+        </div>
+    </div>
+
+    <div class="task">
+        <b>Задача №4.</b>
+        Сила давления равна 600 Н, а давление — 200 Па. Найдите площадь.
+        <br><br>
+        <button onclick="toggleAnswer('a4')">Показать решение</button>
+        <div class="answer" id="a4">
+            S = F / p = 600 / 200 = 3 м².
+            <br><b>Ответ: 3 м².</b>
+        </div>
+    </div>
+
+    <div class="task">
+        <b>Задача №5.</b>
+        Человек массой 50 кг стоит на поверхности. Площадь опоры равна 0,025 м². Найдите давление. Принять g = 10 Н/кг.
+        <br><br>
+        <button onclick="toggleAnswer('a5')">Показать решение</button>
+        <div class="answer" id="a5">
+            F = m × g = 50 × 10 = 500 Н.
+            <br>p = F / S = 500 / 0,025 = 20 000 Па.
+            <br><b>Ответ: 20 000 Па.</b>
+        </div>
+    </div>
+
+    <h3>Вопросы для устного обсуждения</h3>
+    <ol>
+        <li>Почему острый нож режет лучше тупого?</li>
+        <li>Почему лыжи помогают человеку не проваливаться в снег?</li>
+        <li>Почему давление жидкости увеличивается с глубиной?</li>
+        <li>Почему газ оказывает давление на стенки сосуда?</li>
+        <li>Как называется прибор для измерения атмосферного давления?</li>
+    </ol>
+</section>
+
+<section class="card" id="quiz">
+    <h2>8. Проверочный тест</h2>
+    <p>Выбери один правильный ответ на каждый вопрос. После завершения нажми кнопку проверки.</p>
+
+    <div id="quizContainer"></div>
+
+    <button onclick="checkQuiz()">Проверить ответы</button>
+    <button onclick="resetQuiz()" style="background:#6d9a9d;">Пройти заново</button>
+
+    <div id="quizResult"></div>
+</section>
+
+<section class="card">
+    <h2>9. Главное, что нужно запомнить</h2>
+
+    <div class="grid">
+        <div class="mini-card">
+            <h3>Твёрдые тела</h3>
+            <div class="formula">p = F / S</div>
+            <p>Давление зависит от силы и площади опоры.</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Жидкости</h3>
+            <div class="formula">p = ρgh</div>
+            <p>Давление зависит от плотности и глубины.</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Газы</h3>
+            <p>Давление возникает из-за движения молекул и их столкновений со стенками сосуда.</p>
+        </div>
+
+        <div class="mini-card">
+            <h3>Атмосфера</h3>
+            <p>Воздух имеет массу и оказывает давление на все тела.</p>
+        </div>
+    </div>
+
+    <div class="note">
+        <b>Вывод урока:</b> давление — важная физическая величина. Оно встречается в природе, технике и повседневной жизни. Знание законов давления помогает объяснить многие окружающие нас явления.
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <h3 style="color:white;">Физика • 7 класс</h3>
+    <p>Джураев Муслим Тариэльевич, преподаватель</p>
+    <p>Изучай физику — понимай окружающий мир!</p>
+</footer>
+
+<script>
+// МОДЕЛЬ 1. ДАВЛЕНИЕ ТВЁРДОГО ТЕЛА
+
+const force = document.getElementById("force");
+const area = document.getElementById("area");
+
+function updateSolid() {
+    const F = Number(force.value);
+    const S = Number(area.value);
+    const p = F / S;
+
+    document.getElementById("forceValue").textContent = F;
+    document.getElementById("areaValue").textContent = S;
+    document.getElementById("solidResult").textContent =
+        "Давление: " + p.toLocaleString("ru-RU") + " Па";
+
+    const block = document.getElementById("blockVisual");
+    block.style.width = (65 + S * 8) + "px";
+
+    document.getElementById("solidExplanation").textContent =
+        "Сила: " + F + " Н. Площадь: " + S +
+        " м². Чем больше сила, тем больше давление. Чем больше площадь, тем меньше давление.";
+}
+
+force.addEventListener("input", updateSolid);
+area.addEventListener("input", updateSolid);
+updateSolid();
+
+
+// МОДЕЛЬ 2. ДАВЛЕНИЕ ЖИДКОСТИ
+
+const depth = document.getElementById("depth");
+const density = document.getElementById("density");
+
+function updateLiquid() {
+    const h = Number(depth.value);
+    const rho = Number(density.value);
+    const p = rho * 10 * h;
+
+    document.getElementById("depthValue").textContent = h;
+    document.getElementById("densityValue").textContent = rho;
+    document.getElementById("liquidResult").textContent =
+        "Давление: " + p.toLocaleString("ru-RU") + " Па";
+
+    document.getElementById("waterFill").style.height =
+        (45 + h * 5) + "%";
+
+    document.getElementById("waterLine").style.top =
+        Math.max(5, 90 - h * 8) + "%";
+}
+
+depth.addEventListener("input", updateLiquid);
+density.addEventListener("input", updateLiquid);
+updateLiquid();
+
+
+// МОДЕЛЬ 3. ДВИЖЕНИЕ ЧАСТИЦ ГАЗА
+
+const particleCount = document.getElementById("particleCount");
+const gasBox = document.getElementById("gasBox");
+
+function updateGas() {
+    const count = Number(particleCount.value);
+
+    document.getElementById("particleValue").textContent = count;
+    document.getElementById("gasResult").textContent =
+        "Частиц: " + count + " — больше частиц означает больше столкновений со стенками при прочих равных условиях.";
+
+    gasBox.innerHTML = "";
+
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+
+        particle.style.left = (5 + Math.random() * 88) + "%";
+        particle.style.top = (5 + Math.random() * 85) + "%";
+        particle.style.animationDuration = (1 + Math.random() * 2) + "s";
+        particle.style.animationDelay = (-Math.random() * 2) + "s";
+
+        gasBox.appendChild(particle);
+    }
+}
+
+particleCount.addEventListener("input", updateGas);
+updateGas();
+
+
+// ПОКАЗ РЕШЕНИЙ ЗАДАЧ
+
+function toggleAnswer(id) {
+    const element = document.getElementById(id);
+
+    if (element.style.display === "block") {
+        element.style.display = "none";
+    } else {
+        element.style.display = "block";
+    }
+}
+
+
+// ТЕСТ
+
+const questions = [
+    {
+        q: "1. Что такое давление?",
+        a: [
+            "Сила, действующая на тело",
+            "Физическая величина, равная силе на единицу площади",
+            "Масса тела",
+            "Объём тела"
+        ],
+        correct: 1
+    },
+    {
+        q: "2. Как обозначается давление?",
+        a: ["F", "S", "p", "m"],
+        correct: 2
+    },
+    {
+        q: "3. Какова основная единица давления?",
+        a: ["Ньютон", "Килограмм", "Паскаль", "Метр"],
+        correct: 2
+    },
+    {
+        q: "4. По какой формуле находят давление твёрдого тела?",
+        a: ["p = F / S", "p = m × g", "p = ρ × g × h", "p = S / F"],
+        correct: 0
+    },
+    {
+        q: "5. Что произойдёт с давлением, если увеличить силу, а площадь оставить прежней?",
+        a: [
+            "Уменьшится",
+            "Увеличится",
+            "Не изменится",
+            "Станет равным нулю"
+        ],
+        correct: 1
+    },
+    {
+        q: "6. Что произойдёт с давлением, если увеличить площадь опоры при неизменной силе?",
+        a: [
+            "Увеличится",
+            "Уменьшится",
+            "Не изменится",
+            "Всегда станет равным 100 Па"
+        ],
+        correct: 1
+    },
+    {
+        q: "7. Почему лыжи помогают не проваливаться в снег?",
+        a: [
+            "Уменьшают массу человека",
+            "Увеличивают площадь опоры",
+            "Увеличивают силу тяжести",
+            "Уменьшают плотность снега"
+        ],
+        correct: 1
+    },
+    {
+        q: "8. Как называется единица площади в формуле давления?",
+        a: ["м", "м²", "кг", "Н"],
+        correct: 1
+    },
+    {
+        q: "9. По какой формуле рассчитывают давление жидкости?",
+        a: ["p = F / S", "p = m / V", "p = ρ × g × h", "F = m × a"],
+        correct: 2
+    },
+    {
+        q: "10. Как меняется давление жидкости с увеличением глубины?",
+        a: [
+            "Уменьшается",
+            "Увеличивается",
+            "Не меняется",
+            "Исчезает"
+        ],
+        correct: 1
+    },
+    {
+        q: "11. Что обозначает буква ρ в формуле давления жидкости?",
+        a: ["Силу", "Плотность", "Площадь", "Время"],
+        correct: 1
+    },
+    {
+        q: "12. Почему газ оказывает давление на стенки сосуда?",
+        a: [
+            "Из-за движения и столкновений молекул",
+            "Из-за цвета газа",
+            "Из-за формы сосуда",
+            "Из-за освещения"
+        ],
+        correct: 0
+    },
+    {
+        q: "13. Как называется прибор для измерения атмосферного давления?",
+        a: ["Термометр", "Динамометр", "Барометр", "Весы"],
+        correct: 2
+    },
+    {
+        q: "14. Как называется закон, согласно которому давление передаётся жидкостью или газом по всем направлениям?",
+        a: [
+            "Закон Ома",
+            "Закон Паскаля",
+            "Закон Архимеда",
+            "Закон всемирного тяготения"
+        ],
+        correct: 1
+    },
+    {
+        q: "15. Чему равно давление, если сила 100 Н действует на площадь 2 м²?",
+        a: ["200 Па", "50 Па", "100 Па", "25 Па"],
+        correct: 1
+    }
+];
+
+const quizContainer = document.getElementById("quizContainer");
+
+function renderQuiz() {
+    quizContainer.innerHTML = "";
+
+    questions.forEach((question, index) => {
+        const div = document.createElement("div");
+        div.className = "quiz-question";
+
+        let html = "<b>" + question.q + "</b>";
+
+        question.a.forEach((answer, answerIndex) => {
+            html += `
+                <label>
+                    <input type="radio"
+                    name="question${index}"
+                    value="${answerIndex}">
+                    ${answer}
+                </label>
+            `;
+        });
+
+        div.innerHTML = html;
+        quizContainer.appendChild(div);
+    });
+
+    document.getElementById("quizResult").textContent = "";
+}
+
+function checkQuiz() {
+    let score = 0;
+    let unanswered = 0;
+
+    questions.forEach((question, index) => {
+        const selected = document.querySelector(
+            'input[name="question' + index + '"]:checked'
+        );
+
+        if (!selected) {
+            unanswered++;
+        } else if (Number(selected.value) === question.correct) {
+            score++;
+        }
+    });
+
+    if (unanswered > 0) {
+        document.getElementById("quizResult").textContent =
+            "Ты ответил не на все вопросы. Осталось: " + unanswered + ".";
+        return;
+    }
+
+    let message = "";
+
+    if (score >= 13) {
+        message = "Отличный результат! Ты прекрасно усвоил тему!";
+    } else if (score >= 10) {
+        message = "Хорошая работа! Основные понятия усвоены.";
+    } else if (score >= 7) {
+        message = "Неплохо! Повтори формулы и попробуй ещё раз.";
+    } else {
+        message = "Повтори материал урока и пройди тест снова.";
+    }
+
+    document.getElementById("quizResult").innerHTML =
+        "Твой результат: " + score + " из " + questions.length +
+        "<br>" + message;
+}
+
+function resetQuiz() {
+    renderQuiz();
+}
+
+renderQuiz();
+
+</script>
+
+</body>
+</html>
